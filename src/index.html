@@ -4,9 +4,32 @@
     <title>Webpack Starter Kit</title>
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
+    <header>
+      <h1>Overlook</h1>
+      <h2 id='date'>0</h2>
+      <ul class="tabs">
+        <li class="tab-link current" data-tab="tab-main">Main Dashboard</li>
+        <li class="tab-link" data-tab="tab-customers">Customers</li>
+        <li class="tab-link" data-tab="tab-room-service">Room Service Orders</li>
+        <li class="tab-link" data-tab="tab-rooms-bookings">Rooms and Bookings</li>
+      </ul>
+    </header>
+    <main>
+      <section id="tab-main" class="tab-content current">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </section>
+      <section id="tab-customers" class="tab-content">
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
+      <section id="tab-room-service" class="tab-content">
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </section>
+      <section id="tab-rooms-bookings" class="tab-content">
+        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </section>
+    </main>
+    
 
-    <img src="/images/turing-logo.png" alt="turing logo" height="100px" width="100px">
 
     <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
