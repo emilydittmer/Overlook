@@ -93,3 +93,12 @@ fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/room-services/roomServ
       hotel.onLoad();
     }, 1000)
   })
+
+  $('#add-new-customer').on('click', function() {
+    let customerName = $('.add-customer').val();
+    let newCustomerObj = {};
+    newCustomerObj.name = customerName;
+    newCustomerObj.id = customerData.length+1;
+    customerData.push(newCustomerObj)
+    console.log(customerData)
+  })
