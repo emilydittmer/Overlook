@@ -1,7 +1,16 @@
 import Hotel from '../src/Hotel';
 import { customers, rooms, bookings, roomServices } from './sample-data.js';
+import domUpdates from '../src/domUpdates';
 var chai = require('chai');
 var expect = chai.expect;
+import spies from 'chai-spies';
+chai.use(spies);
+
+chai.spy.on(domUpdates, [
+  'totalRoomsDomUpdates',
+  'todayTotalAvailaleRooms',
+  'totalDailyDebts'
+], () => true);
 
 
 describe('Hotel', function() {

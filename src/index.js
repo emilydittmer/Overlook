@@ -1,13 +1,16 @@
 import $ from 'jquery';
+import { customers, rooms, bookings, roomServices } from '../test/sample-data.js';
 
 import './css/base.scss';
 import Hotel from './Hotel.js';
+import Customer from './Customer.js'
 
 var customerData;
 var roomData;
 var roomServiceData;
 var bookingData;
 let hotel;
+let customer;
 
 fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/users/users')
   .then(function(response) {
@@ -56,15 +59,13 @@ fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/room-services/roomServ
   function setBookingData(booking){
     bookingData = booking;
   }
-
   let newDate = new Date();
-  var month = newDate .getMonth() + 1;
-  var day = newDate .getDate();
-  var year = newDate .getFullYear();
-
   let date = document.querySelector("#date");
-
-date.innerHTML =  month + "/" + day + "/" + year;
+  date.innerHTML = [
+    newDate.getDate(),
+    "0" + (newDate.getMonth() + 1),
+    newDate.getFullYear()
+  ].join("/");
 
   $(document).ready(function(){
 	
@@ -77,7 +78,18 @@ date.innerHTML =  month + "/" + day + "/" + year;
       $(this).addClass('current');
       $("#"+tab_id).addClass('current');
     })
-    
-    hotel = new Hotel(customerData, roomData, bookingData, roomServiceData, date);
-    hotel.todayTotalRoomsAvailable();
+
+    $('.customer-search').on('input', function(){
+      let searchedCustomer = $('.customer-search').val().toUpperCase();
+      setTimeout(() => {
+        customer = new Customer(customerData, searchedCustomer)
+        customer.grabCustomerInformation();
+      }, 500)
+    })
+
+    setTimeout(() => {
+      hotel = new Hotel(customerData, roomData, bookingData, roomServiceData, date.innerHTML);
+      customer
+      hotel.onLoad();
+    }, 1000)
   })
