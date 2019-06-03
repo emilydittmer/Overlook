@@ -17,10 +17,14 @@ let domUpdates = {
 
   displayCustomer(customer) {
     if (customer.length === 0) {
-      
+
     }else {
       $('.found-customer').html(customer)
     }
+  },
+
+  displayCustomerTotalCost(total){
+    $('.customer-total-owed').html(total)
   }
 }
 
