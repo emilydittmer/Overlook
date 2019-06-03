@@ -9,8 +9,18 @@ class Hotel {
     this.date = date;
   }
 
+  onLoad() {
+    this.todayTotalRoomsAvailable();
+    this.todayRoomsCost();
+    this.todayRoomServiceCost();
+    this.todayTotalDebts();
+    this.occupiedPercentage();
+  }
+
   todayTotalRoomsAvailable() {
-    return this.rooms.length - this.bookings.filter(eachBooking => eachBooking.date === this.date).length;
+    let totalRooms = this.rooms.length - this.bookings.filter(eachBooking => eachBooking.date === this.date).length;
+    this.totalRoomsDomUpdates(totalRooms);
+    return totalRooms;
   }
   
   todayRoomsCost() {
@@ -39,13 +49,21 @@ class Hotel {
     let roomCost = this.todayRoomsCost();
     let roomServiceCost = this.todayRoomServiceCost();
     let totalDebts = roomCost + roomServiceCost;
-    return Number(totalDebts.toFixed(2));
+    let total = Number(totalDebts.toFixed(2));
+    domUpdates.totalDailyDebt(total);
+    return total;
   }
 
   occupiedPercentage() {
     let availableRooms = this.todayTotalRoomsAvailable();
     let roomsBooked = this.rooms.length - availableRooms
-    return (roomsBooked / this.rooms.length)*100
+    let percentage = (roomsBooked / this.rooms.length)*100
+    domUpdates.dailyOccupiedPercentage(percentage);
+    return percentage;
+  }
+
+  totalRoomsDomUpdates(rooms){
+    domUpdates.todayTotalAvailaleRooms(rooms);
   }
 
 }

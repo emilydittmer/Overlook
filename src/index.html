@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <title>Overlook</title>
   </head>
   <body>
     <header>
@@ -16,10 +16,20 @@
     </header>
     <main>
       <section id="tab-main" class="tab-content current">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p class="main-tab-available-rooms">Today we have <span class='main-total-rooms'></span> available rooms</p>
+        <p class='main-tab-total-owed'>Total debt owed today: $<span class="main-total-debt"></span></p>
+        <p class='main-tap-occupied-percentage'>Occupacy Percentage: <span class="main-occupacy-percentage"></span>%</p>
       </section>
       <section id="tab-customers" class="tab-content">
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <form class="search-customers">
+          <input type="search" class="customer-search"/>
+          <button type="button" class="search-button">Search</button>
+        </form>
+        <p class='found-customer'></p>
+        <form class="add-customer customer-hidden">
+          <input type='text' class='add-customer'placeholder='Add New Customer'>
+          <button type='button'>Submit</button>
+        </form>
       </section>
       <section id="tab-room-service" class="tab-content">
         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
