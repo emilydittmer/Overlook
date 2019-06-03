@@ -2,11 +2,12 @@
 <html lang="en-US">
   <head>
     <title>Overlook</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&display=swap" rel="stylesheet"> 
   </head>
   <body>
     <header>
       <h1>Overlook</h1>
-      <h2 id='date'>0</h2>
+      <h2>Today's Date: <span id='date'>0</span></h2>
       <ul class="tabs">
         <li class="tab-link current" data-tab="tab-main">Main Dashboard</li>
         <li class="tab-link" data-tab="tab-customers">Customers</li>
@@ -16,16 +17,17 @@
     </header>
     <main>
       <section id="tab-main" class="tab-content current">
-        <p class="main-tab-available-rooms">Today we have <span class='main-total-rooms'></span> available rooms</p>
-        <p class='main-tab-total-owed'>Total debt owed today: $<span class="main-total-debt"></span></p>
-        <p class='main-tap-occupied-percentage'>Occupacy Percentage: <span class="main-occupacy-percentage"></span>%</p>
+        <p class="main-tab-available-rooms tab-data-hidden">Today we have <span class='main-total-rooms'></span> available rooms</p>
+        <p class='main-tab-total-owed tab-data-hidden'>Total debt owed today: $<span class="main-total-debt"></span></p>
+        <p class='main-tab-occupied-percentage tab-data-hidden'>Occupacy Percentage: <span class="main-occupacy-percentage"></span>%</p>
       </section>
       <section id="tab-customers" class="tab-content">
         <form class="search-customers">
+          <label>Search All Customers:</label><br/>
           <input type="search" class="customer-search"/>
           <button type="button" class="search-button">Search</button>
         </form>
-        <p class='found-customer'></p><p>$<span class='customer-total-owed'></span></p>
+        <p class='found-customer'></p><p>Total Amount Owed: $<span class='customer-total-owed'></span></p>
         <form class="add-customer customer-hidden">
           <input type='text' class='add-customer'placeholder='Add New Customer'>
           <button type='button'>Submit</button>
