@@ -20,7 +20,8 @@ class Customer {
       this.selectedCustomer = customer;
     }
     domUpdates.displayCustomer(this.foundCustomer);
-    this.totalCustomerOwed()
+    this.totalCustomerOwed();
+    this.updateRoomService();
   }
 
   totalCustomerOwed() {
@@ -37,6 +38,10 @@ class Customer {
     let totalCost = totalRoomCost + totalSandwichCost
     domUpdates.displayCustomerTotalCost(totalCost);
     return totalCost
+  }
+
+  updateRoomService() {
+    let roomService = new roomService(this.roomService, this.selectedCustomer, this.selectedCustomerID)
   }
 
 }

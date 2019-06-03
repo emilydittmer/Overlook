@@ -25,6 +25,10 @@ let domUpdates = {
 
   displayCustomerTotalCost(total){
     $('.customer-total-owed').html(total)
+  },
+
+  showCustomerNameRoomService(customer) {
+    $('.customer-name').html(customer);
   }
 }
 
