@@ -1,5 +1,5 @@
 import Customer from '../src/Customer';
-import { customers, rooms, bookings, roomServices } from './sample-data.js';
+import { customers, rooms, roomServices, bookings } from './sample-data.js';
 import domUpdates from '../src/domUpdates';
 var chai = require('chai');
 var expect = chai.expect;
@@ -8,7 +8,7 @@ describe('Customer', function() {
   let customer;
 
   beforeEach(function() {
-    customer = new Customer(customers, 'Autumn Toy');
+    customer = new Customer(customers, rooms, roomServices, bookings, 'Autumn Toy');
   }) 
 
   it('should be a function', function() {
@@ -22,6 +22,10 @@ describe('Customer', function() {
   it('should return the customer information', function(){
     customer.grabCustomerInformation();
     expect(customer.foundCustomer).to.eql({ id: 1, name: 'Autumn Toy' })
+  });
+
+  it('should show the total amount the customer owes', function(){
+    expect(customer.totalCustomerOwed().to.equal(295.54))
   })
 
 });

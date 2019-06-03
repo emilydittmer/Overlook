@@ -82,7 +82,7 @@ fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/room-services/roomServ
     $('.customer-search').on('input', function(){
       let searchedCustomer = $('.customer-search').val().toUpperCase();
       setTimeout(() => {
-        customer = new Customer(customerData, searchedCustomer)
+        customer = new Customer(customerData, roomData, roomServiceData, bookingData, searchedCustomer)
         customer.grabCustomerInformation();
       }, 500)
     })
