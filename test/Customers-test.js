@@ -8,7 +8,7 @@ describe('Customer', function() {
   let customer;
 
   beforeEach(function() {
-    customer = new Customer(customers, rooms, roomServices, bookings, 'Autumn Toy');
+    customer = new Customer(customers, rooms, roomServices, bookings, 'Autumn Toy', '21/08/2019');
   }) 
 
   it('should be a function', function() {

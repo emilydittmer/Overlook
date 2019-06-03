@@ -1,12 +1,13 @@
 import domUpdates from './domUpdates';
 
 class Customer {
-  constructor(customerData, roomData, roomServiceData, bookingData, searchValue) {
+  constructor(customerData, roomData, roomServiceData, bookingData, searchValue, date) {
     this.customerData = customerData;
     this.roomData = roomData;
     this.roomServiceData = roomServiceData;
     this.bookingData = bookingData;
     this.searchValue = searchValue;
+    this.date = date;
     this.foundCustomer = [];
     this.selectedCustomer = '';
     this.selectedCustomerID = ''
@@ -21,7 +22,6 @@ class Customer {
     }
     domUpdates.displayCustomer(this.foundCustomer);
     this.totalCustomerOwed();
-    this.updateRoomService();
   }
 
   totalCustomerOwed() {
@@ -41,7 +41,7 @@ class Customer {
   }
 
   updateRoomService() {
-    let roomService = new roomService(this.roomService, this.selectedCustomer, this.selectedCustomerID)
+    let roomService = new roomService(this.roomService, this.customerData, this.selectedCustomer, this.selectedCustomerID, this.date)
   }
 
 }
