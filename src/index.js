@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import { customers, rooms, bookings, roomServices } from '../test/sample-data.js';
 
 import './css/base.scss';
 import Hotel from './Hotel.js';
@@ -83,14 +82,13 @@ fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/room-services/roomServ
     $('.customer-search').on('input', function(){
       let searchedCustomer = $('.customer-search').val().toUpperCase();
       setTimeout(() => {
-        customer = new Customer(customerData, roomData, roomServiceData, bookingData, searchedCustomer)
+        customer = new Customer(customerData, roomData, roomServiceData, bookingData, searchedCustomer, date.innerHTML)
         customer.grabCustomerInformation();
       }, 500)
     })
 
     setTimeout(() => {
       hotel = new Hotel(customerData, roomData, bookingData, roomServiceData, date.innerHTML);
-      customer
       hotel.onLoad();
     }, 1000)
   })
