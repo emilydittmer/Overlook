@@ -4,6 +4,7 @@ import { customers, rooms, bookings, roomServices } from '../test/sample-data.js
 import './css/base.scss';
 import Hotel from './Hotel.js';
 import Customer from './Customer.js'
+import domUpdates from './domUpdates.js';
 
 var customerData;
 var roomData;
@@ -99,6 +100,7 @@ fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/room-services/roomServ
     let newCustomerObj = {};
     newCustomerObj.name = customerName;
     newCustomerObj.id = customerData.length+1;
-    customerData.push(newCustomerObj)
-    console.log(customerData)
+    customerData.push(newCustomerObj);
+    domUpdates.displayCustomer(newCustomerObj.name);
+    $('.add-customer').val('');
   })
