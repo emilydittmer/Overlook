@@ -1,8 +1,41 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: pink;
+$primary-color: hsla(138, 44%, 40%, 0.3);
+$secondary-color: #fff;
+$current-display-color: #000;
+$main-font: 'Roboto Condensed', sans-serif;
 
 body {
-  // background-color: $primary-background;
+  display: grid;
+  font-family: $main-font;
+  height: 100vh;
+  grid-template-rows: 25% 75%;
+  background-color: $primary-color;
+  background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url(../images/mountains.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%
+}
+
+header{
+  grid-row: 1 / 2;
+  color: $secondary-color;
+}
+
+h1{
+  text-align: center;
+  font-size: 4em;
+  font-weight: 700;
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+
+h2{
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+ul {
+  display: flex;
+  justify-content: space-between;
 }
 
 ul.tabs{
@@ -11,24 +44,39 @@ ul.tabs{
   list-style: none;
 }
 ul.tabs li{
-  background: none;
-  color: #222;
+  background: $primary-color;
+  color: $secondary-color;
   display: inline-block;
   padding: 10px 15px;
   cursor: pointer;
 }
 
 ul.tabs li.current{
-  background: #ededed;
-  color: #222;
+  background: hsla(0, 0%, 100%, 0.4);
+  color: $current-display-color;
+}
+
+li {
+  width: 22%;
+  margin-left: 2px;
 }
 
 .tab-content{
   display: none;
-  background: #ededed;
+  background: hsla(0, 0%, 100%, 0.4);
   padding: 15px;
 }
 
 .tab-content.current{
+  background: hsla(0, 0%, 100%, 0.4);
+  height: 95%;
   display: inherit;
+}
+
+main {
+  grid-row: 2 / 3;
+}
+
+#tab-main {
+  text-align: center;
 }
