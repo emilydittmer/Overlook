@@ -81,6 +81,15 @@ describe('RoomService', function() {
 
   it('should show the total spent by a customer', function() {
     expect(roomService.showTotalSpentByCustomer()).to.equal(9.48);
-  })
+  });
+
+  it('should show the total in room service per day', function() {
+    const result = [{
+      date: '21/08/2019',
+      food: 'Generic Plastic Sandwich',
+      cost: 9.48 }]
+    const expected = [ '21/08/2019' [{food:'Generic Plastic Sandwich', cost: 9.48}]]
+    expect(roomService.roomServicePerDay(result)).to.equal(expected)
+  });
 
 });

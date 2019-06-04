@@ -28,13 +28,24 @@
           <button type="button" class="search-button">Search</button>
         </form>
         <p class='found-customer'></p><p>Total Amount Owed: $<span class='customer-total-owed'></span></p>
-        <form class="add-customer-form customer-hidden">
+        <form class="add-customer-form customer-hidden"> 
           <input type='text' class='add-customer' placeholder='Add New Customer'>
           <button type='button' id='add-new-customer'>Submit</button>
         </form>
       </section>
       <section id="tab-room-service" class="tab-content">
-        <h3 class='customer-name'>Customer Name</h3>
+        <div class='previously-selected-customer'>
+          <h3 class='customer-name'>Customer Name</h3>
+          <p>Today Orders: <span class='customer-orders-today'></span></p>
+          <p>Today Total Cost: <span class='customer-cost-today'></span></p>
+          <p>Total Amount Spent: <span class='customer-total-cost'></span></p>
+        </div>
+        <form>
+          <h3><label>Select Another Customer</label></h3>
+          <input type="search" class="roomservice-customer-search" placeholder="Customer Name"/><br/>
+          <input type='date' class="roomservice-date-selection"/><br/>
+          <button type="button" class="roomservice-search-button">Search</button>
+        </form>
       </section>
       <section id="tab-rooms-bookings" class="tab-content">
         <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
