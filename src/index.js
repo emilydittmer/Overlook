@@ -4,6 +4,8 @@ import './css/base.scss';
 import Hotel from './Hotel.js';
 import Customer from './Customer.js'
 import domUpdates from './domUpdates.js';
+import fetchData from '../utl/fetchData';
+
 
 var customerData;
 var roomData;
@@ -12,53 +14,15 @@ var bookingData;
 let hotel;
 let customer;
 
-fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/users/users')
-  .then(function(response) {
-    response.json().then(function(customers) {
-      setCustomerData(customers.users);
-    })
-  })
-  .catch(err => console.log('Error'));
-
-fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/rooms/rooms')
-  .then(function(response) {
-    response.json().then(function(rooms) {
-      setRoomData(rooms.rooms);
-    })
-  })
-  .catch(err => console.log('Error'));
-
-fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/bookings/bookings')
-  .then(function(response) {
-    response.json().then(function(bookings) {
-      setBookingData(bookings.bookings);
-    })
-  })
-  .catch(err => console.log('Error'));
-
-fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/room-services/roomServices')
-  .then(function(response) {
-    response.json().then(function(roomService) {
-      setRoomServiceData(roomService.roomServices);
-    })
-  })
-  .catch(err => console.log('Error'));
-
-  function setCustomerData(customers) {
-    customerData = customers;
+  const assignData = async () => {
+    roomData = await fetchData('rooms');
+    customerData = await fetchData('users');
+    roomServiceData = await fetchData('roomServices');
+    bookingData = await fetchData('bookings');
   }
 
-  function setRoomData(rooms){
-    roomData = rooms;
-  }
+  assignData();
 
-  function setRoomServiceData(roomService){
-    roomServiceData = roomService;
-  }
-
-  function setBookingData(booking){
-    bookingData = booking;
-  }
   let newDate = new Date();
   let date = document.querySelector("#date");
   date.innerHTML = [
@@ -102,3 +66,4 @@ fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1903/room-services/roomServ
     domUpdates.displayCustomer(newCustomerObj.name);
     $('.add-customer').val('');
   })
+
