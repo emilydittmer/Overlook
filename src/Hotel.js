@@ -1,11 +1,12 @@
 import domUpdates from './domUpdates';
+import fetchData from '../utl/fetchData';
 
 class Hotel {
-  constructor(customers, rooms, bookings, roomService, date) {
-    this.customers = customers;
-    this.rooms = rooms;
-    this.bookings = bookings;
-    this.roomService = roomService;
+  constructor (customerData, roomData, bookingData, roomServiceData, date) {
+    this.customers = customerData;
+    this.rooms = roomData;
+    this.bookings = bookingData;
+    this.roomServices = roomServiceData;
     this.date = date;
   }
 
@@ -38,7 +39,7 @@ class Hotel {
   }
   
   todayRoomServiceCost() {
-    let todayRoomService = this.roomService.filter(service => service.date === this.date);
+    let todayRoomService = this.roomServices.filter(service => service.date === this.date);
     let totalCost = todayRoomService.reduce((acc, sandwich) => {
       return acc += sandwich.totalCost
     }, 0);

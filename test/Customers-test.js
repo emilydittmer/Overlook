@@ -21,7 +21,7 @@ describe('Customer', function() {
 
   it('should return the customer information', function(){
     customer.grabCustomerInformation();
-    expect(customer.foundCustomer).to.eql({ id: 1, name: 'Autumn Toy' })
+    expect(customer.selectedCustomer).to.eql({ id: 1, name: 'Autumn Toy' })
   });
 
   it('should show the total amount the customer owes', function(){

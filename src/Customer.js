@@ -8,19 +8,13 @@ class Customer {
     this.bookingData = bookingData;
     this.searchValue = searchValue;
     this.date = date;
-    this.foundCustomer = [];
-    this.selectedCustomer = '';
-    this.selectedCustomerID = ''
+    this.selectedCustomer = {};
   }
 
   grabCustomerInformation() {
-    let allCustomers = this.customerData.map(customer => customer.name);
-    let customer = allCustomers.filter(customer => customer.toUpperCase().includes(this.searchValue))
-    this.foundCustomer = customer;
-    if (this.foundCustomer.length === 1) {
-      this.selectedCustomer = customer;
-    }
-    domUpdates.displayCustomer(this.foundCustomer);
+    let allCustomers = this.customerData.find(customer => customer.name.toUpperCase().includes(this.searchValue))
+    this.selectedCustomer = allCustomers;
+    domUpdates.displayCustomer(this.selectedCustomer.name);
     this.totalCustomerOwed();
   }
 
