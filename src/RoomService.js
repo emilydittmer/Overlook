@@ -1,20 +1,25 @@
 import domUpdates from './domUpdates';
 
 class RoomService{
-  constructor(roomServiceData, customerData, selectedCustomer, selectedCustomerID, date) {
+  constructor(roomServiceData, customerData, selectedCustomer, date) {
     this.roomServiceData = roomServiceData;
     this.customerData = customerData;
     this.selectedCustomer = selectedCustomer;
-    this.selectedCustomerID = selectedCustomerID;
     this.date = date;
   }
 
   showOrdersToday() {
-    return this.roomServiceData.filter(roomService => roomService.date === this.date);
+    let todayOrders = this.roomServiceData.filter(roomService => roomService.date === this.date);
+    domUpdates.showSelectedCustomerTodayOrders(todayOrders);
+    this.showOrderByDate();
+    this.showTotalSpentByCustomer();
+    return todayOrders;
   }
 
-  showOrderByDate(date) {
-    return this.roomServiceData.filter(roomService => roomService.date === date);
+  showOrderByDate() {
+    let ordersOnDate = this.roomServiceData.filter(roomService => roomService.date === this.date);
+    ///domUpdate(ordersOnDate)
+    this.showOrdersByCustomer();
   }
 
   showOrdersByCustomer() {
@@ -36,15 +41,17 @@ class RoomService{
   }
 
   showTotalSpentPerDay(date) {
-    let customerOrders = this.roomServiceData.filter(order => order.userID === Number(this.selectedCustomerID))
+    let customerOrders = this.roomServiceData.filter(order => order.userID === this.selectedCustomer.id)
     let ordersPerDay = customerOrders.filter(order => order.date === date)
-    return ordersPerDay.reduce((acc, order) => {
+    let total = ordersPerDay.reduce((acc, order) => {
       return acc += order.totalCost
     }, 0)
+    domUpdates.showSelectedCustomerTodayCost(total);
+    return total;
   }
 
   showTotalSpentByCustomer() {
-    let customerOrders = this.roomServiceData.filter(order => order.userID === Number(this.selectedCustomerID))
+    let customerOrders = this.roomServiceData.filter(order => order.userID === this.selectedCustomer.id)
     return customerOrders.reduce((acc, order) => {
       return acc += order.totalCost
     }, 0)
@@ -58,7 +65,6 @@ class RoomService{
       acc[food.date].push({food: food.food, cost: food.cost})
       return acc;
     }, [])
-    console.log(eachDayOrder);
     return eachDayOrder;
   }
 

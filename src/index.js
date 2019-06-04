@@ -5,6 +5,7 @@ import Hotel from './Hotel.js';
 import Customer from './Customer.js'
 import domUpdates from './domUpdates.js';
 import fetchData from '../utl/fetchData';
+import RoomService from './RoomService';
 
 
 var customerData;
@@ -13,6 +14,7 @@ var roomServiceData;
 var bookingData;
 let hotel;
 let customer;
+let roomService;
 
   const assignData = async () => {
     roomData = await fetchData('rooms');
@@ -48,6 +50,7 @@ let customer;
       setTimeout(() => {
         customer = new Customer(customerData, roomData, roomServiceData, bookingData, searchedCustomer, date.innerHTML)
         customer.grabCustomerInformation();
+        roomService = new RoomService(roomServiceData, customerData, date.innerHTML)
       }, 500)
     })
 
@@ -65,5 +68,17 @@ let customer;
     customerData.push(newCustomerObj);
     domUpdates.displayCustomer(newCustomerObj.name);
     $('.add-customer').val('');
+  })
+
+  $('.roomservice-search-button').on('click', function(e) {
+    e.preventDefault();
+    let newCustomer = $('.roomservice-customer-search').val().toUpperCase();
+    let selectedCustomer = customerData.find(customer => customer.name.toUpperCase() === newCustomer)
+    let newDate = $('.roomservice-date-selection').val();
+    let reformatDate = newDate.toString().split('-')
+    let changedDate = `${reformatDate[2]}/${reformatDate[1]}/${reformatDate[0]}`
+    let roomService = new RoomService(roomServiceData, customerData, selectedCustomer, changedDate);
+    domUpdates.showCustomerNameRoomService(selectedCustomer.name);
+    roomService.showOrdersToday()
   })
 
