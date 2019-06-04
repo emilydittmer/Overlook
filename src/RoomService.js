@@ -31,6 +31,7 @@ class RoomService{
         cost: order.totalCost
       }
     })
+    this.roomServicePerDay(orders);
     return orders;
   }
 
@@ -49,7 +50,17 @@ class RoomService{
     }, 0)
   }
 
-
+  roomServicePerDay(orders) {
+    let eachDayOrder = orders.reduce((acc, food) => {
+      if(!acc[food.date]) {
+        date: acc[food.date] = [];
+      }
+      acc[food.date].push({food: food.food, cost: food.cost})
+      return acc;
+    }, [])
+    console.log(eachDayOrder);
+    return eachDayOrder;
+  }
 
 }
 
