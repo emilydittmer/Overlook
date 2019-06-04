@@ -29,6 +29,18 @@ let domUpdates = {
 
   showCustomerNameRoomService(customer) {
     $('.customer-name').html(customer);
+  },
+
+  showSelectedCustomerTodayOrders(orders) {
+    if(orders.length > 0){
+      $('.customer-orders-today').html(orders)
+    } else {
+      $('.customer-orders-today').html("No Orders Today")
+    }
+  },
+
+  showSelectedCustomerTodayCost(amount) {
+    $('.customer-cost-today').html(amount)
   }
 }
 

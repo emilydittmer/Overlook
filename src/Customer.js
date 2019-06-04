@@ -1,4 +1,6 @@
 import domUpdates from './domUpdates';
+import RoomService from './RoomService';
+import { constants } from 'zlib';
 
 class Customer {
   constructor(customerData, roomData, roomServiceData, bookingData, searchValue, date) {
@@ -16,12 +18,14 @@ class Customer {
     this.selectedCustomer = allCustomers;
     domUpdates.displayCustomer(this.selectedCustomer.name);
     this.totalCustomerOwed();
+    let roomService = new RoomService(this.roomServiceData, this.customerData, this.selectedCustomer, this.date)
+    roomService.showOrdersToday()
+    domUpdates.showCustomerNameRoomService(this.selectedCustomer.name)
   }
 
   totalCustomerOwed() {
-    let customer = this.customerData.find(customer => customer.name == this.selectedCustomer)
-    this.selectedCustomerID = customer.id;
-    let booking = this.bookingData.find(room => room.userID == this.selectedCustomerID);
+    console.log(this.selectedCustomer)
+    let booking = this.bookingData.find(room => room.userID == this.selectedCustomer.id);
     let roomNumber = booking.roomNumber;
     let hotelRoom = this.roomData.find(room => room.number === roomNumber);
     let totalRoomCost = hotelRoom.costPerNight
@@ -32,10 +36,6 @@ class Customer {
     let totalCost = totalRoomCost + totalSandwichCost
     domUpdates.displayCustomerTotalCost(totalCost);
     return totalCost
-  }
-
-  updateRoomService() {
-    let roomService = new roomService(this.roomService, this.customerData, this.selectedCustomer, this.selectedCustomerID, this.date)
   }
 
 }
