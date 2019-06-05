@@ -2,7 +2,7 @@
 
 ## Description
 
-Over look is a hotel management app to be used by hotel staff to manage activities like customer details, booking details for different types of rooms, unbooking rooms, and calculating/showing a customer’s total bill. This application uses Object Oriented Programming (OOP), SCSS, and emphasised Test Driven Development.
+Overlook is a hotel management app to be used by hotel staff to manage activities like customer details, booking details for different types of rooms, unbooking rooms, and calculating/showing a customer’s total bill. This application uses Object Oriented Programming (OOP), SCSS, and emphasised Test Driven Development.
 
 ## Installation
 
