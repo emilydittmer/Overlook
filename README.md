@@ -30,6 +30,7 @@ Then, go to http://localhost:8080/ in your browser to see the code running in th
 ### Search Customers
 
 ### Room Service
+![Imgur](https://i.imgur.com/uStfTZw.png)
 
 ## Learning Goals
 - Use OOP to drive the design of the application and the code
