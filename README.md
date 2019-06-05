@@ -24,6 +24,12 @@ npm start
 Then, go to http://localhost:8080/ in your browser to see the code running in the browser.
 
 ## Screenshots
+### Main Screen
+![Imgur](https://i.imgur.com/9YwIxzT.jpg)
+
+### Search Customers
+
+### Room Service
 
 ## Learning Goals
 - Use OOP to drive the design of the application and the code
