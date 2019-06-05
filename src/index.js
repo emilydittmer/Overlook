@@ -6,6 +6,7 @@ import Customer from './Customer.js'
 import domUpdates from './domUpdates.js';
 import fetchData from '../utl/fetchData';
 import RoomService from './RoomService';
+import Booking from './Bookings'
 
 
 var customerData;
@@ -15,6 +16,7 @@ var bookingData;
 let hotel;
 let customer;
 let roomService;
+let booking;
 
   const assignData = async () => {
     roomData = await fetchData('rooms');
@@ -50,18 +52,21 @@ let roomService;
       setTimeout(() => {
         customer = new Customer(customerData, roomData, roomServiceData, bookingData, searchedCustomer, date.innerHTML)
         customer.grabCustomerInformation();
-        roomService = new RoomService(roomServiceData, customerData, date.innerHTML)
+        roomService = new RoomService(roomServiceData, customerData, date.innerHTML);
       }, 500)
     })
 
     setTimeout(() => {
       hotel = new Hotel(customerData, roomData, bookingData, roomServiceData, date.innerHTML);
       hotel.onLoad();
+      booking = new Booking(bookingData);
+      booking.mostPopularBookingDate();
     }, 1000)
   })
 
   $('#add-new-customer').on('click', function() {
     let customerName = $('.add-customer').val();
+    $('.add-customer').val('');
     let newCustomerObj = {};
     newCustomerObj.name = customerName;
     newCustomerObj.id = customerData.length+1;
@@ -72,13 +77,51 @@ let roomService;
 
   $('.roomservice-search-button').on('click', function(e) {
     e.preventDefault();
-    let newCustomer = $('.roomservice-customer-search').val().toUpperCase();
+    let newCustomer = $('.roomservice-customer-search').val();
+    $('.roomservice-customer-search').val('');
     let selectedCustomer = customerData.find(customer => customer.name.toUpperCase() === newCustomer)
     let newDate = $('.roomservice-date-selection').val();
+    $('.roomservice-date-selection').val('');
     let reformatDate = newDate.toString().split('-')
     let changedDate = `${reformatDate[2]}/${reformatDate[1]}/${reformatDate[0]}`
-    let roomService = new RoomService(roomServiceData, customerData, selectedCustomer, changedDate);
+    roomService = new RoomService(roomServiceData, customerData, selectedCustomer, changedDate);
     domUpdates.showCustomerNameRoomService(selectedCustomer.name);
-    roomService.showOrdersToday()
+    domUpdates.showSelectedDateRoomService(changedDate)
+    roomService.showOrdersByDate();
   })
+
+  $('.add-room-service-btn').on('click', function(e) {
+    e.preventDefault();
+    let newRoomServiceOrder = {};
+    let customer = {};
+    let selectedCustomer = $('.customer-name').html();
+    let selectedCustomerID = customerData.find(customer => customer.name === selectedCustomer).id
+    let selectedDate = $('.selected-date').html()
+    newRoomServiceOrder.userID = selectedCustomerID;
+    newRoomServiceOrder.date = selectedDate;
+    newRoomServiceOrder.food = $('.room-service-food-input').val();
+    $('.room-service-food-input').val('');
+    newRoomServiceOrder.totalCost = Number($('.room-service-food-cost').val());
+    $('.room-service-food-cost').val('');
+    customer.id = customerData.find(customer => customer.name === selectedCustomer).id
+    customer.name = selectedCustomer;
+    roomServiceData.push(newRoomServiceOrder);
+    roomService.addNewOrder(roomServiceData, customer, selectedDate);
+  })
+
+  $('.roomservice-select-new-date-btn').on('click', function(e){
+    e.preventDefault();
+    let customer = {};
+    let selectedCustomer = $('.customer-name').html();
+    let selectedCustomerID = customerData.find(customer => customer.name === selectedCustomer).id;
+    customer.id = customerData.find(customer => customer.name === selectedCustomer).id
+    customer.name = selectedCustomer;
+    let newDate = $('.roomservice-new-date-selection').val();
+    $('.roomservice-date-selection').val('');
+    let reformatDate = newDate.toString().split('-')
+    let changedDate = `${reformatDate[2]}/${reformatDate[1]}/${reformatDate[0]}`
+    domUpdates.showSelectedDateRoomService(changedDate);
+    roomService.updateDate(customer, changedDate);
+  })
+
 

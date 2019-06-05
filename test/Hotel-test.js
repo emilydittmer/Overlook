@@ -9,8 +9,19 @@ chai.use(spies);
 chai.spy.on(domUpdates, [
   'totalRoomsDomUpdates',
   'todayTotalAvailaleRooms',
-  'totalDailyDebts',
-  'displayCustomerTotalCost'
+  'totalDailyDebt',
+  'dailyOccupiedPercentage',
+  'displayCustomerTotalCost',
+  'showAllOrdersPerDate',
+  'showSelectedCustomerTodayOrders',
+  'showSelectedCustomerTodayCost',
+  'showCustomerTotalCost',
+  'showCustomerRoomServiceByDate',
+  'displayCustomer',
+  'showCustomerNameRoomService',
+  'showSelectedDateRoomService',
+  'showMostPopularDate',
+  'showLeastPopularDate'
 ], () => true);
 
 
