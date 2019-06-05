@@ -9,7 +9,6 @@ class RoomService{
   }
 
   showOrdersByDate() {
-    console.log(this.date)
     let todayOrders = this.roomServiceData.filter(roomService => roomService.date === this.date);
     this.showOrdersByDatePerCustomer(todayOrders);
     this.showAllOrdersByCustomer();
