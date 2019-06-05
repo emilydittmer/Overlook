@@ -8,22 +8,23 @@ class RoomService{
     this.date = date;
   }
 
-  showOrdersToday() {
+  showOrdersByDate() {
+    console.log(this.date)
     let todayOrders = this.roomServiceData.filter(roomService => roomService.date === this.date);
-    domUpdates.showSelectedCustomerTodayOrders(todayOrders);
-    this.showOrderByDate();
-    this.showTotalSpentByCustomer();
+    this.showOrdersByDatePerCustomer(todayOrders);
+    this.showAllOrdersByCustomer();
+    domUpdates.showAllOrdersPerDate(todayOrders)
     return todayOrders;
   }
 
-  showOrderByDate() {
-    let ordersOnDate = this.roomServiceData.filter(roomService => roomService.date === this.date);
-    ///domUpdate(ordersOnDate)
-    this.showOrdersByCustomer();
+  showOrdersByDatePerCustomer(todayOrders) {
+    let todayCustomerOrders = todayOrders.filter(order => order.userID === this.selectedCustomer.id);
+    domUpdates.showSelectedCustomerTodayOrders(todayCustomerOrders)
+    return todayCustomerOrders;
   }
 
-  showOrdersByCustomer() {
-    let customerOrders = this.roomServiceData.filter(roomService => roomService.userID === Number(this.selectedCustomerID))
+  showAllOrdersByCustomer() {
+    let customerOrders = this.roomServiceData.filter(roomService => roomService.userID === this.selectedCustomer.id)
     this.showTotalBreakDownOfPurchases(customerOrders);
     return customerOrders;
   }
@@ -37,35 +38,53 @@ class RoomService{
       }
     })
     this.roomServicePerDay(orders);
+    this.showTotalSpentPerDay();
+    domUpdates.showCustomerRoomServiceByDate(orders);
     return orders;
   }
 
-  showTotalSpentPerDay(date) {
+  showTotalSpentPerDay() {
     let customerOrders = this.roomServiceData.filter(order => order.userID === this.selectedCustomer.id)
-    let ordersPerDay = customerOrders.filter(order => order.date === date)
+    let ordersPerDay = customerOrders.filter(order => order.date === this.date)
     let total = ordersPerDay.reduce((acc, order) => {
       return acc += order.totalCost
     }, 0)
     domUpdates.showSelectedCustomerTodayCost(total);
+    this.showTotalSpentByCustomer();
     return total;
   }
 
   showTotalSpentByCustomer() {
     let customerOrders = this.roomServiceData.filter(order => order.userID === this.selectedCustomer.id)
-    return customerOrders.reduce((acc, order) => {
+    let totalCost = customerOrders.reduce((acc, order) => {
       return acc += order.totalCost
     }, 0)
+    domUpdates.showCustomerTotalCost(totalCost);
+    return totalCost;
   }
 
-  roomServicePerDay(orders) {
-    let eachDayOrder = orders.reduce((acc, food) => {
+  roomServicePerDay(allOrders) {
+    let eachDayOrder = allOrders.reduce((acc, food) => {
       if(!acc[food.date]) {
-        date: acc[food.date] = [];
+        acc[food.date] = [];
       }
       acc[food.date].push({food: food.food, cost: food.cost})
       return acc;
     }, [])
     return eachDayOrder;
+  }
+
+  addNewOrder(updateRoomServiceData, customer, selectedDate) {
+    this.roomServiceData = updateRoomServiceData;
+    this.selectedCustomer = customer;
+    this.date = selectedDate;
+    this.showOrdersByDate()
+  }
+
+  updateDate(customer, newDate) {
+    this.selectedCustomer = customer;
+    this.date = newDate;
+    this.showOrdersByDate()
   }
 
 }

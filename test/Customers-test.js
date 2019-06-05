@@ -1,6 +1,5 @@
 import Customer from '../src/Customer';
 import { customers, rooms, roomServices, bookings } from './sample-data.js';
-import domUpdates from '../src/domUpdates';
 var chai = require('chai');
 var expect = chai.expect;
 
