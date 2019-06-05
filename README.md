@@ -38,3 +38,6 @@ Then, go to http://localhost:8080/ in your browser to see the code running in th
 - Use OOP to drive the design of the application and the code
 - Separate business-logic code from view-related code
 - Create a robust test suite that thoroughly tests all functionality of a client-side application
+
+## Contributors
+[Emily Dittmer](https://github.com/emilydittmer)
