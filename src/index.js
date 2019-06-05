@@ -77,9 +77,10 @@ let booking;
 
   $('.roomservice-search-button').on('click', function(e) {
     e.preventDefault();
-    let newCustomer = $('.roomservice-customer-search').val();
+    let newCustomer = $('.roomservice-customer-search').val().toUpperCase();
     $('.roomservice-customer-search').val('');
     let selectedCustomer = customerData.find(customer => customer.name.toUpperCase() === newCustomer)
+    console.log(selectedCustomer)
     let newDate = $('.roomservice-date-selection').val();
     $('.roomservice-date-selection').val('');
     let reformatDate = newDate.toString().split('-')
