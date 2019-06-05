@@ -28,9 +28,11 @@ Then, go to http://localhost:8080/ in your browser to see the code running in th
 ![Imgur](https://i.imgur.com/9YwIxzT.jpg)
 
 ### Search Customers
+![Search Customers](https://github.com/emilydittmer/Overlook/blob/master/demo/search.gif)
 
 ### Room Service
 ![Imgur](https://i.imgur.com/uStfTZw.png)
+![Search Customers](https://github.com/emilydittmer/Overlook/blob/master/demo/add-order.gif)
 
 ## Learning Goals
 - Use OOP to drive the design of the application and the code
