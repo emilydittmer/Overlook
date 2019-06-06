@@ -43,7 +43,7 @@ ul {
 }
 
 ul.tabs{
-  margin: 0px;
+  margin: 0px 5px;;
   padding: 0px;
   list-style: none;
 }
@@ -69,17 +69,15 @@ li {
   display: none;
   background: hsla(0, 0%, 100%, 0.4);
   padding: 15px;
+  margin-top: 20px;
 }
 
 .tab-content.current{
   background: hsla(0, 0%, 100%, 0.4);
-  height: 95%;
+  height: 90%;
   display: inherit;
 }
 
-main {
-  grid-row: 2 / 3;
-}
 
 #tab-main {
   text-align: center;

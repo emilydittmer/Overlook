@@ -1,5 +1,6 @@
 import domUpdates from './domUpdates';
 import RoomService from './RoomService';
+import Booking from './Bookings'
 
 class Customer {
   constructor(customerData, roomData, roomServiceData, bookingData, searchValue, date) {
@@ -18,6 +19,8 @@ class Customer {
     domUpdates.displayCustomer(this.selectedCustomer.name);
     this.totalCustomerOwed();
     let roomService = new RoomService(this.roomServiceData, this.customerData, this.selectedCustomer, this.date)
+    let booking = new Booking(this.bookingData, this.selectedCustomer, this.date);
+    booking.mostPopularBookingDate();
     roomService.showOrdersByDate();
     domUpdates.showCustomerNameRoomService(this.selectedCustomer.name)
     domUpdates.showSelectedDateRoomService(this.date);

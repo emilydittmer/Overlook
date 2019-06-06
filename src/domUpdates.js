@@ -36,7 +36,7 @@ let domUpdates = {
   },
 
   showSelectedCustomerTodayOrders(orders) {
-    if(orders.length > 0){
+    if(orders.length){
       orders.forEach(order => {
         $('.customer-orders-today').html(`${order.food} ( ${order.totalCost} )`)
       })
@@ -53,12 +53,12 @@ let domUpdates = {
     $('.all-orders-by-date').html(allOrders)
   },
 
-  showCustomerRoomServiceByDate(allOrders){
-    if(allOrders.length === 0){
-      $('.all-room-service-by-day').html("No Orders for selected customer")
+  showCustomerRoomServiceByDate(allOrders) {
+    if(!allOrders.length){
+      $('.all-room-service-by-day').append(`<p>No Orders for selected customer</p>`)
     } else {
       allOrders.forEach(order => {
-        $('.all-room-service-by-day').html(`${order.date}: ${order.food}( ${order.cost} )`)
+        $('.all-room-service-by-day').html(`<p>${order.date}: ${order.food}($ ${order.cost} )</p>`)
       })
     }
   },
@@ -73,6 +73,10 @@ let domUpdates = {
 
   showLeastPopularDate(date) {
     $('.least-popular-date').html(date);
+  },
+
+  showCompletedBooking(text){
+    $('.show-if-booked').html(text)
   }
 }
 
