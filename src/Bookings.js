@@ -1,8 +1,10 @@
 import domUpdates from './domUpdates';
 
 class Booking {
-  constructor(bookingData){
+  constructor(bookingData, selectedCustomer, date){
     this.bookingData = bookingData;
+    this.selectedCustomer = selectedCustomer;
+    this.date = date;
   }
 
   mostPopularBookingDate() {

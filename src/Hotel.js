@@ -5,7 +5,7 @@ class Hotel {
   constructor (customerData, roomData, bookingData, roomServiceData, date) {
     this.customers = customerData;
     this.rooms = roomData;
-    this.bookings = bookingData;
+    this.bookingData = bookingData;
     this.roomServices = roomServiceData;
     this.date = date;
   }
@@ -19,13 +19,13 @@ class Hotel {
   }
 
   todayTotalRoomsAvailable() {
-    let totalRooms = this.rooms.length - this.bookings.filter(eachBooking => eachBooking.date === this.date).length;
+    let totalRooms = this.rooms.length - this.bookingData.filter(eachBooking => eachBooking.date == this.date).length;
     this.totalRoomsDomUpdates(totalRooms);
     return totalRooms;
   }
   
   todayRoomsCost() {
-    let todayRooms = this.bookings.filter(eachBooking => eachBooking.date === this.date);
+    let todayRooms = this.bookingData.filter(eachBooking => eachBooking.date == this.date);
     let roomNumbers = todayRooms.map(room => room.roomNumber);
     let costPerRoom = roomNumbers.map(room => {
       return {

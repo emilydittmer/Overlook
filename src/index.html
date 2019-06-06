@@ -17,12 +17,14 @@
     </header>
     <main>
       <section id="tab-main" class="tab-content current">
-        <p class="main-tab-available-rooms tab-data-hidden main-info">Today we have <span class='main-total-rooms'></span> available rooms</p>
-        <p class='main-tab-total-owed tab-data-hidden main-info'>Total debt owed today: $<span class="main-total-debt"></span></p>
-        <p class='main-tab-occupied-percentage tab-data-hidden main-info'>Occupacy Percentage: <span class="main-occupacy-percentage"></span>%</p>
+        <div class = 'hide'>
+          <p class="main-tab-available-rooms tab-data-hidden main-info">Today we have <span class='main-total-rooms'></span> available rooms</p>
+          <p class='main-tab-total-owed tab-data-hidden main-info'>Total debt owed today: $<span class="main-total-debt"></span></p>
+          <p class='main-tab-occupied-percentage tab-data-hidden main-info'>Occupacy Percentage: <span class="main-occupacy-percentage"></span>%</p>
+        </div>
       </section>
       <section id="tab-customers" class="tab-content">
-        <div class="customers">
+        <div class="all-customers">
           <form class="search-customers">
             <label class='customer-search-feature'>Search All Customers:</label><br/>
             <input type="search" class="customer-search"/>
@@ -35,11 +37,8 @@
           </form>
         </div>
       </section>
-      <section id="tab-rooms-bookings" class="tab-content">
-        <h4 class='popular'>The most popular bookings date is <span class='most-popular-date'></span></h4>
-        <h4 class='popular'>The least popular bookings date is <span class='least-popular-date'></span></h4>
-      </section>
       <section id="tab-room-service" class="tab-content">
+        <div class= 'all-room-service'>
           <div class='previously-selected-customer'>
             <h3 class='customer-name'>Customer Name</h3>
             <h3 class='date'>Selected Date: <span class='selected-date'></span></h3>
@@ -53,9 +52,10 @@
               <button type="button" class="roomservice-search-button">Search</button>
             </form>
           </div>
-          <div>
+          <div class="room-service-add-order">
             <h3>Total Room Service Per Day for <span class ='customer-name'></span></h3>
-            <p class='all-room-service-by-day'></p>
+            <div class='all-room-service-by-day'>
+            </div>
             <form>
               <label>
                 <h4>Add Room Service Order</h4>
@@ -65,7 +65,7 @@
               </label>
             </form>
           </div>
-          <div>
+          <div class="room-service-all-orders">
             <h3>Orders for <span class='selected-date'></span></h3>
             <p class='all-orders-by-date'></p>
             <form>
@@ -74,7 +74,53 @@
               <button type="button" class="roomservice-select-new-date-btn">Search</button>
             </form>
           </div>
+          </div>
         </section>
+        <section id="tab-rooms-bookings" class="tab-content">
+          <div class='all-bookings'>
+            <div class="booking-sections">
+              <h3>Selected Customer: <span class='customer-name'></span></h3>
+              <h3>Selected Date: <span class='selected-date'></span></h3>
+              <h4 class='popular'>The most popular bookings date is <span class='most-popular-date'></span></h4>
+              <h4 class='popular'>The least popular bookings date is <span class='least-popular-date'></span></h4>
+            </div> 
+            <div class='booking-sections'>
+              <form class='add-new-booking'>
+                <h5 class='show-if-booked'></h5>
+                <label>Add a new booking</label>
+                <div>
+                  <p>Date:</p>
+                  <input type='date' class="new-booking-date">
+                </div>
+                <div class='radio-section'>
+                  <p>Room Type:</p>
+                  <input type="radio" name="room-type" value="single room"/>Single Room<br/>
+                  <input type="radio" name="room-type" value="residential suite"/>Residential Suite <br/>
+                  <input type="radio" name="room-type" value="junior suite"/>Junior Suite <br/>
+                  <input type="radio" name="room-type" value="suite"/>Suite <br/>
+                </div>
+                <div class='radio-section'>
+                  <p>Bed Size:</p>
+                  <input type="radio" name="bed-size" value="twin"/>Twin<br/>
+                  <input type="radio" name="bed-size" value="full"/>Full<br/>
+                  <input type="radio" name="bed-size" value="queen"/>Queen<br/>
+                  <input type="radio" name="bed-size" value="king"/>King<br/>
+                </div>
+                <div class='radio-section'>
+                  <p>Number of Beds</p>
+                  <input type="radio" name="num-beds" value="1"/>1
+                  <input type="radio" name="num-beds" value="2"/>2
+                </div>
+                <div class='radio-section'>
+                  <p>Bidet Needed?</p>
+                  <input type="radio" name="bidet" value="true"/>True
+                  <input type="radio" name="bidet" value="false"/>False
+                </div>
+                <button type='submit'class="add-new-booking-btn">Submit</button>
+              </form>
+            </div>
+            </div>
+          </section>
     </main>
     
 

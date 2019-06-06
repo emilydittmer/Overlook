@@ -6,7 +6,7 @@ import Customer from './Customer.js'
 import domUpdates from './domUpdates.js';
 import fetchData from '../utl/fetchData';
 import RoomService from './RoomService';
-import Booking from './Bookings'
+import Booking from './Bookings';
 
 
 var customerData;
@@ -16,7 +16,7 @@ var bookingData;
 let hotel;
 let customer;
 let roomService;
-let booking;
+let currentCustomer;
 
   const assignData = async () => {
     roomData = await fetchData('rooms');
@@ -30,10 +30,12 @@ let booking;
   let newDate = new Date();
   let date = document.querySelector("#date");
   date.innerHTML = [
-    newDate.getDate(),
+   "0" + (newDate.getDate()),
     "0" + (newDate.getMonth() + 1),
     newDate.getFullYear()
   ].join("/");
+
+  
 
   $(document).ready(function(){
 	
@@ -59,8 +61,7 @@ let booking;
     setTimeout(() => {
       hotel = new Hotel(customerData, roomData, bookingData, roomServiceData, date.innerHTML);
       hotel.onLoad();
-      booking = new Booking(bookingData);
-      booking.mostPopularBookingDate();
+      // booking = 
     }, 1000)
   })
 
@@ -124,5 +125,34 @@ let booking;
     domUpdates.showSelectedDateRoomService(changedDate);
     roomService.updateDate(customer, changedDate);
   })
+
+  $('.add-new-booking-btn').on('click', function(e){
+    e.preventDefault();
+    console.log(customer.selectedCustomer)
+    let selectedDate = $('.new-booking-date').val()
+    $('.roomservice-date-selection').val('');
+    let reformatDate = selectedDate.toString().split('-')
+    let changedDate = `${reformatDate[2]}/${reformatDate[1]}/${reformatDate[0]}`
+    let selectedRoomType = $('input[name="room-type"]:checked').val();
+    let selectedBedSize = $('input[name="bed-size"]:checked').val();
+    let selectedBedNums = $('input[name="num-beds"]:checked').val();
+    let selectedBidet = $('input[name="bidet"]:checked').val();
+    checkForRooms(changedDate, selectedRoomType, selectedBedSize, selectedBedNums, selectedBidet)
+  })
+
+
+  function checkForRooms(date, roomType, bedSize, bedNum, bidet) {
+    let typeOfRoom = roomData.filter(room => room.roomType === roomType)
+    let sizeOfBed = typeOfRoom.filter(room => room.bedSize === bedSize);
+    let numOfBeds = sizeOfBed.filter(room => room.numBeds == bedNum)
+    let filteredRooms = numOfBeds.filter(room => room.bidet.toString() === bidet)
+    let booking = filteredRooms.filter(room => !bookingData.filter(booking => booking.date === date).map(booking => booking.roomNumber).includes(room.number))
+    if(booking.length) {
+      domUpdates.showCompletedBooking('Room has been booked successfully');
+    } else {
+      domUpdates.showCompletedBooking('No available bookings for this date. Please select different options.')
+    }
+    
+  }
 
 

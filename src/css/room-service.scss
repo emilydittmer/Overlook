@@ -1,9 +1,11 @@
-#tab-room-service {
+.all-room-service {
   display: flex;
   justify-content: space-evenly;
 }
 
-div{
+.previously-selected-customer,
+.room-service-add-order,
+.room-service-all-orders {
   flex-direction: column;
   margin: 10px;
 }

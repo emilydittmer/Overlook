@@ -1,3 +1,31 @@
+.all-bookings{
+  display: flex;
+  justify-content: space-around;
+}
+
+.booking-selctions{
+  flex-direction: column;
+  margin: 10px;
+}
+
 .popular {
-  font-size: 1.75em;
+  font-size: 1.25em;
+}
+
+.add-new-booking{
+  input {
+    margin-top: 1px;
+  }
+  label{
+    font-size: 1.5em;
+    margin-bottom: 5px;
+  }
+  p {
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  h5 {
+    font-size: 1.5em;
+    margin: 5px 0;
+  }
 }
